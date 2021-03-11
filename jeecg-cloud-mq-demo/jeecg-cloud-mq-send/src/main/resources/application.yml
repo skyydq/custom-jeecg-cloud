@@ -1,0 +1,32 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: jeecgCloudExchange #约定交换机通道名
+          binder: local_rabbit
+          group: jeecgCloudConsumers #指定分组名，解决重复消费问题
+        output:
+          destination: jeecgCloudExchange #约定交换机通道名
+          binder: local_rabbit
+      binders:
+        local_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+feign:
+  sentinel:
+    enabled: true
+resttemplate:
+  sentinel:
+    enabled: true

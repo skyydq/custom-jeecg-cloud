@@ -1,0 +1,13 @@
+## ide
+/.idea/
+**/.idea
+*.iml
+rebel.xml
+
+## backend
+/target/
+**/target
+**/logs
+
+## front
+**/*.lock
